@@ -1,5 +1,9 @@
 const canvas = document.querySelector('#game'); // Select the HTML element with id 'game' and store it in the constant variable 'canvas'.
 const game = canvas.getContext('2d'); // Get the 2D rendering context for the canvas and store it in the constant variable 'game'.
+const btnUp = document.querySelector('#Up');
+const btnLeft = document.querySelector('#Left');
+const btnRight = document.querySelector('#Right');
+const btnDown = document.querySelector('#Down');
 
 // Add a 'load' event listener to the window object, which calls the 'setCanvasSize' function when the window is finished loading.
 window.addEventListener('load',setCanvasSize);
@@ -59,4 +63,30 @@ function startGame() {
         
     // }
 }
+
+window.addEventListener('keydown',moveByKeys);
+btnUp.addEventListener('click',moveUp);
+btnLeft.addEventListener('click',moveLeft);
+btnRight.addEventListener('click',moveRight);
+btnDown.addEventListener('click',moveDown);
+
+function moveByKeys(event){
+    if(event.key=='ArrowUp') moveUp();
+    else if(event.key == 'ArrowLeft') moveLeft();
+    else if(event.key == 'ArrowRight') moveRight();
+    else if(event.key == 'ArrowDown') moveDown();
+}
+function moveUp(){
+    console.log('Me quiero mover hacia arriba');
+}
+function moveLeft(){
+    console.log('Me quiero mover hacia izquierda');
+}
+function moveRight(){
+    console.log('Me quiero mover hacia derecha');
+}
+function moveDown(){
+    console.log('Me quiero mover hacia abajo');
+}
+
 
