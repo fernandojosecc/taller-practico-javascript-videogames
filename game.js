@@ -10,8 +10,12 @@ window.addEventListener('load',setCanvasSize);
 window.addEventListener('resize',setCanvasSize);
 
 let canvasSize;
-     
 let elementsSize;// = canvasSize / 10;
+
+const playerPosition = {
+    x: undefined,
+    y: undefined,
+}
 
 function setCanvasSize(){
     // Determine the size of the canvas based on the dimensions of the window.
@@ -51,17 +55,21 @@ function startGame() {
             const emoji = emojis[col];
             const posX = elementsSize *(colI+1);
             const posY = elementsSize *(rowI+1);
+
+            if(col=='O'){
+                playerPosition.x = posX;
+                playerPosition.y = posY;
+
+                console.log(playerPosition);
+            }
+
             game.fillText(emoji,posX,posY);
         });
     });
+}
 
-       // Loop 10 times and draw a text element on the canvas for each iteration.
-    // for(let row=1;row<=10;row++){
-    //     for(let column = 1;column<=10;column++){
-    //         game.fillText(emojis[mapRowCols[row-1][column-1]],elementsSize*column,elementsSize*row);
-    //     }
-        
-    // }
+function movePlayer(){
+    game.fillText(emojis['PLAYER'],playerPosition.x,playerPosition.y)
 }
 
 window.addEventListener('keydown',moveByKeys);
@@ -78,6 +86,8 @@ function moveByKeys(event){
 }
 function moveUp(){
     console.log('Me quiero mover hacia arriba');
+    playerPosition.y -=elementsSize;
+    movePlayer();
 }
 function moveLeft(){
     console.log('Me quiero mover hacia izquierda');
